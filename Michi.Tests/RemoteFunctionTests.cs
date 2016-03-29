@@ -13,9 +13,15 @@ namespace Michi.Tests
         [Fact]
         public void MakeSingularTest()
         {
-            var remoteFunction = RemoteFunction.Make(this.HelloWorld);
+            var remoteFunction = RemoteFunction.Make<string>(this.HelloWorld);
             Assert.Equal("HelloWorld", remoteFunction.MethodName);
             Assert.Equal("Test", remoteFunction.MethodNamespace);
+        }
+
+        [Fact]
+        public void TestMethodTest()
+        {
+            Assert.Equal("Hello World", this.HelloWorld());
         }
 
         [RemoteFunction("HelloWorld", "Test")]

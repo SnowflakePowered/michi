@@ -90,6 +90,9 @@ namespace Michi.Functions
 
         #region Actions
 
+        public static RemoteFunction Make(Action method)
+           => RemoteFunction.Make((Delegate)method);
+
         public static RemoteFunction Make<T1>(Action<T1> method)
             => RemoteFunction.Make((Delegate) method);
 

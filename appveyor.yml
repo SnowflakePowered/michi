@@ -17,9 +17,6 @@ init:
 build:
   project: Michi.sln
   parallel: true
-  publish_nuget: true
-  publish_nuget_symbols: true
-  verbosity: minimal
   
 cache:
   - packages -> **\packages.config
@@ -38,20 +35,8 @@ after_test:
     - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
     - pip install codecov
     - codecov -f "coverage.xml"
-    - rem Packing NuGet packages...
-    - nuget pack Michi\Michi.csproj -IncludeReferencedProjects -Symbols
 
 artifacts:
     - path: Michi\bin\$(configuration)
       name: Michi
       type: zip
-    - path: 'Michi.nupkg'
-      name: Michi NuGet Packages
-
-deploy:
-    - provider: NuGet
-      server: https://www.myget.org/F/snowflake-nightly/api/v2/package
-      api_key:
-        secure: c0TSni4oM3D75P31isNFRu0z4whPsrvTAcu67iLlFmtvvrzopEI8Xj5qWk1pwMkj
-      symbol_server: https://nuget.symbolsource.org/MyGet/snowflake-nightly
-      skip_symbols: false

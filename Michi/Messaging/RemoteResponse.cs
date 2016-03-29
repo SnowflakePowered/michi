@@ -13,9 +13,9 @@ namespace Michi.Messaging
     public class RemoteResponse
     {
         /// <summary>
-        /// The response value
+        /// The resulted value
         /// </summary>
-        public object Response { get; }
+        public object Result { get; }
 
         /// <summary>
         /// Whether the execution was a success
@@ -32,9 +32,9 @@ namespace Michi.Messaging
         /// </summary>
         public RemoteRequest CallingRequest { get; }
 
-        public RemoteResponse(object response, bool success, RemoteRequest request, Exception error = null)
+        public RemoteResponse(object result, bool success, RemoteRequest request, Exception error = null)
         {
-            this.Response = response;
+            this.Result = result;
             this.IsSuccess = success;
             this.CallingRequest = request;
             this.Error = error;

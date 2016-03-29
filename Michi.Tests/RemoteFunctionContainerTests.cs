@@ -13,7 +13,7 @@ namespace Michi.Tests
         [Fact]
         public void AddTest()
         {
-            var remoteFunction = RemoteFunction.Make(this.HelloWorld);
+            var remoteFunction = RemoteFunction.Make<string>(this.HelloWorld);
             var remoteFunctionContainer = new RemoteFunctionContainer()
             {
                 remoteFunction
@@ -24,14 +24,14 @@ namespace Michi.Tests
         [Fact]
         public void InvokeTest()
         {
-            var remoteFunction = RemoteFunction.Make(this.HelloWorld);
+            var remoteFunction = RemoteFunction.Make<string>(this.HelloWorld);
             var remoteFunctionContainer = new RemoteFunctionContainer()
             {
                 remoteFunction
             };
             var response = remoteFunctionContainer.Invoke(new Messaging.RemoteRequest("HelloWorld", "Test",
                 new RemoteFunctionParameters()));
-            Assert.Equal("Hello World", response.Response);
+            Assert.Equal("Hello World", response.Result);
             Assert.True(response.IsSuccess);
         }
 
@@ -49,7 +49,7 @@ namespace Michi.Tests
                 {
                     {"echo", "Hello World"}
                 }));
-            Assert.Equal("Hello World", response.Response);
+            Assert.Equal("Hello World", response.Result);
             Assert.True(response.IsSuccess);
         }
 
@@ -69,6 +69,17 @@ namespace Michi.Tests
         }
 
 
+        [Fact]
+        public void InvokeMissingTest()
+        {
+            var remoteFunctionContainer = new RemoteFunctionContainer();
+            var response = remoteFunctionContainer.Invoke(new Messaging.RemoteRequest("Error", "Test",
+               new RemoteFunctionParameters()));
+            Assert.False(response.IsSuccess);
+            Assert.NotNull(response.Error);
+        }
+
+
         [RemoteFunction("HelloWorld", "Test")]
         public string HelloWorld()
         {
@@ -82,7 +93,7 @@ namespace Michi.Tests
         }
 
         [RemoteFunction("Error", "Test")]
-        public string Error()
+        public void Error()
         {
            throw new Exception("Hello World");
         }
