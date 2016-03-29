@@ -10,9 +10,9 @@ using Michi.Messaging;
 namespace Michi.Functions
 {
     /// <summary>
-    /// Represents a function 
+    /// Represents an exported function that is accessible by consumers
     /// </summary>
-    public partial class RemoteFunction
+    public partial struct RemoteFunction
     {
         private readonly MethodInfo methodInfo;
         private readonly object methodTarget;

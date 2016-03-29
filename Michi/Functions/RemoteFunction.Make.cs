@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Michi.Functions
 {
-    public partial class RemoteFunction
+    public partial struct RemoteFunction
     {
         #region Functions
 

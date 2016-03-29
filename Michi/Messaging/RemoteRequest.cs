@@ -10,7 +10,7 @@ namespace Michi.Messaging
     /// <summary>
     /// Represents a remote request sent from the consumer
     /// </summary>
-    public class RemoteRequest
+    public struct RemoteRequest
     {
         /// <summary>
         /// The namespace of the requested method to call

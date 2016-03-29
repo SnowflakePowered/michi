@@ -10,7 +10,7 @@ namespace Michi.Messaging
     /// <summary>
     /// Represents a response sent back to the consumer
     /// </summary>
-    public class RemoteResponse
+    public struct RemoteResponse
     {
         /// <summary>
         /// The resulted value

@@ -29,6 +29,10 @@ namespace Michi.Tests
                 {
                     Assert.Equal(this.HelloWorld(), response.Result);
                 });
+            handler.Object.RequestCompleted += (s, e) =>
+            {
+                Assert.Equal(this.HelloWorld(), e.Response.Result);
+            };
             handler.Object.HandleRequest(new {});
         }
 
@@ -48,6 +52,10 @@ namespace Michi.Tests
                 {
                     Assert.Equal(this.HelloWorld(), response.Result);
                 });
+            handler.Object.RequestCompleted += (s, e) =>
+            {
+                Assert.Equal(this.HelloWorld(), e.Response.Result);
+            };
             handler.Object.HandleRequest(new { });
         }
 
