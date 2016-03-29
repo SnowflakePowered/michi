@@ -27,11 +27,6 @@ namespace Michi.Functions
             object value = this.parameterDictionary[key];
             return (value is T) ? (T)value : default(T);
          }
- 
-        internal object Param(string key)
-        {
-            return this.parameterDictionary.ContainsKey(key) ? this.parameterDictionary[key] : null;
-        }
 
         public void Add(string key, dynamic value)
         {

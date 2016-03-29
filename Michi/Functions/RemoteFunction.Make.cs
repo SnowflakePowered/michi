@@ -38,7 +38,7 @@ namespace Michi.Functions
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
             var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]), 
+            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
                 p.Param<T2>(paramNames[1]),
                 p.Param<T3>(paramNames[2])),
                 methodData.MethodName, methodData.MethodNamespace);
