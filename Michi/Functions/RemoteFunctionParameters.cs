@@ -28,7 +28,7 @@ namespace Michi.Functions
             return (value is T) ? (T)value : default(T);
          }
 
-        public void Add(string key, dynamic value)
+        public void Add(string key, object value)
         {
             this.parameterDictionary.Add(key, value);
         }
