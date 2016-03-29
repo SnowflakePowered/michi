@@ -23,10 +23,9 @@ namespace Michi.Functions
 
          internal T Param<T>(string key)
          {
-             if (!this.parameterDictionary.ContainsKey(key)) return default(T);
-             object value = this.parameterDictionary[key];
-             if (value is T) return (T)value;
-             return default(T);
+            if (!this.parameterDictionary.ContainsKey(key)) return default(T);
+            object value = this.parameterDictionary[key];
+            return (value is T) ? (T)value : default(T);
          }
  
         internal object Param(string key)

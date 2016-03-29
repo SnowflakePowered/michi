@@ -25,6 +25,18 @@ namespace Michi.Functions
             this.MethodName = methodName;
         }
 
+        RemoteFunction(Action<RemoteFunctionParameters> function, string methodName, string methodNamespace)
+        {
+            this.function = (p) =>
+            {
+                function(p);
+                return null;
+            };
+
+            this.MethodNamespace = methodNamespace;
+            this.MethodName = methodName;
+        }
+
         internal object Invoke(RemoteFunctionParameters remoteParameters)
         {
             return this.function.Invoke(remoteParameters);

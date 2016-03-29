@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functions\MethodInfoExtensions.cs" />
     <Compile Include="Functions\RemoteFunction.cs" />
     <Compile Include="Functions\RemoteFunctionAttribute.cs" />
     <Compile Include="Functions\RemoteFunctionContainer.cs" />
