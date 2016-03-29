@@ -1,4 +1,4 @@
-![Michi Logo](https://raw.githubusercontent.com/SnowflakePowered/michi/master/michi.png)Michi
+<img src="https://raw.githubusercontent.com/SnowflakePowered/michi/master/michi.png" width=64> Michi
 =====
 
 Michi is a lightweight framework on implementing inter-process function calls from .NET.
