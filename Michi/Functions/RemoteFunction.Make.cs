@@ -8,15 +8,24 @@ namespace Michi.Functions
         #region Functions
 
         public static RemoteFunction Make<TResult>(Func<TResult> method)
-            => RemoteFunction.Make((Delegate) method);
-
+        {
+            var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
+                            new RemoteFunctionAttribute(method.Method.Name);
+            return new RemoteFunction((parameters) => method, methodData.MethodName, methodData.MethodNamespace);
+        }
 
         public static RemoteFunction Make<T1, TResult>(Func<T1, TResult> method)
-            => RemoteFunction.Make((Delegate) method);
+        {
+            var paramNames = method.Method.GetParameterNames();
+            return new RemoteFunction((parameters) => method(parameters.Param<T1>(paramNames[0])));
+        }
+
 
 
         public static RemoteFunction Make<T1, T2, TResult>(Func<T1, T2, TResult> method)
-            => RemoteFunction.Make((Delegate) method);
+        {
+
+        }
 
 
         public static RemoteFunction Make<T1, T2, T3, TResult>(Func<T1, T2, T3, TResult> method)
@@ -170,11 +179,5 @@ namespace Michi.Functions
 
         #endregion
 
-        private static RemoteFunction Make(Delegate method)
-        {
-            var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
-                             new RemoteFunctionAttribute(method.Method.Name);
-            return new RemoteFunction(method.Method, method.Target, methodData.MethodName, methodData.MethodNamespace);
-        }
     }
 }

@@ -14,28 +14,20 @@ namespace Michi.Functions
     /// </summary>
     public partial struct RemoteFunction
     {
-        private readonly MethodInfo methodInfo;
-        private readonly object methodTarget;
+        private readonly Func<RemoteFunctionParameters, object> function;
         public string MethodNamespace { get; }
         public string MethodName { get; }
 
-        RemoteFunction(MethodInfo methodInfo, object methodTarget, string methodName, string methodNamespace)
+        RemoteFunction(Func<RemoteFunctionParameters, object> function, string methodName, string methodNamespace)
         {
-            this.methodInfo = methodInfo;
-            this.methodTarget = methodTarget;
+            this.function = function;
             this.MethodNamespace = methodNamespace;
             this.MethodName = methodName;
         }
 
         internal object Invoke(RemoteFunctionParameters remoteParameters)
         {
-            ParameterInfo[] parameterInfos = this.methodInfo.GetParameters();
-            object[] callingParameters = new object[parameterInfos.Length];
-            foreach (var param in parameterInfos)
-            {
-                callingParameters[param.Position] = remoteParameters.Param(param.Name);
-            }
-            return this.methodInfo.Invoke(this.methodTarget, callingParameters);
+            return this.function.Invoke(remoteParameters);
         }
     }
 }
