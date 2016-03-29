@@ -37,7 +37,7 @@ namespace Michi.Functions
             this.MethodName = methodName;
         }
 
-        internal object Invoke(RemoteFunctionParameters remoteParameters)
+        public object Invoke(RemoteFunctionParameters remoteParameters)
         {
             return this.function.Invoke(remoteParameters);
         }
