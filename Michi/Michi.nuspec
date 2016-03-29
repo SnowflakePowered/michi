@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Michi</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Ronny Chan</authors>
+    <owners>Ronny Chan</owners>
+    <licenseUrl>http://ronnchyran.mit-license.org/</licenseUrl>
+    <projectUrl>https://github.com/SnowflakePowered/michi</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/SnowflakePowered/michi/master/michi.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Michi</description>
+    <copyright>Copyright Ronny Chan 2015</copyright>
+    <tags>Michi</tags>
+  </metadata>
+</package>
