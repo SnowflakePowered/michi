@@ -107,7 +107,7 @@ console.log(response.Error.Message); // "Error World!"
 
 let requestObj = michi.create("IGotYouFam", "BadIdeas");
 let response = await michi.request(requestObj);
-//Error: WebSocket conection closed unexpectedly by the server. 
+//Error: WebSocket connection closed unexpectedly by the server. 
 ```
 
 \*_michi.js not (yet) included_
