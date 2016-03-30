@@ -121,7 +121,7 @@ Other RPC libraries specify a format that you have to follow and have a lot of c
 
 Michi doesn't come with a spec. You can use whatever serialization format or transport you want, just handle it in an [`IRemoteHandler`](https://github.com/SnowflakePowered/michi/tree/master/Michi/Handlers). You could pipe the `RemoteRequest`/`RemoteResponse` objects through a pipe as binary objects, use [Protobufs](https://developers.google.com/protocol-buffers/docs/csharptutorial), or serialize it in a binary format and send it using [carrier pigeons](https://www.ietf.org/rfc/rfc1149.txt).
 
-Michi isn't concerned with the way it sends and receives data, only that the data is there for a function when it runs.
+Michi isn't concerned with the way it sends and receives data, only that the data is there for a function when it runs. It's basically a fancy dictionary for `Func<>` objects!
 
 
 
