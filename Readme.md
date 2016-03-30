@@ -42,7 +42,7 @@ console.log(response.Result); // "Hello World"
 
 // ...
 
-let requestObj = michi.create("Echo", "@", { "stringtoEcho" : "Hello World" } );
+let requestObj = michi.create("Echo", "@", { "stringToEcho" : "Hello World" } );
 let response = await michi.request(requestObj);
 console.log(response.Result); // "Hello World from C#!"
 ```
