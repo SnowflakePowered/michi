@@ -15,17 +15,31 @@ namespace Michi.Functions
     public partial struct RemoteFunction
     {
         private readonly Func<RemoteFunctionParameters, object> function;
+        /// <summary>
+        /// The exported namespace the method is contained in.
+        /// Use this as groups, for example.
+        /// </summary>
         public string MethodNamespace { get; }
+
+        /// <summary>
+        /// The name of the method
+        /// </summary>
         public string MethodName { get; }
 
-        RemoteFunction(Func<RemoteFunctionParameters, object> function, string methodName, string methodNamespace)
+        /// <summary>
+        /// The parameters and types this function takes.
+        /// </summary>
+        public IReadOnlyDictionary<string, Type> ParameterTypes { get; }
+
+        RemoteFunction(Func<RemoteFunctionParameters, object> function, string methodName, string methodNamespace, IReadOnlyDictionary<string, Type> parameterTypes)
         {
             this.function = function;
             this.MethodNamespace = methodNamespace;
             this.MethodName = methodName;
+            this.ParameterTypes = parameterTypes;
         }
 
-        RemoteFunction(Action<RemoteFunctionParameters> function, string methodName, string methodNamespace)
+        RemoteFunction(Action<RemoteFunctionParameters> function, string methodName, string methodNamespace, IReadOnlyDictionary<string, Type> parameterTypes)
         {
             this.function = (p) =>
             {
@@ -35,6 +49,7 @@ namespace Michi.Functions
 
             this.MethodNamespace = methodNamespace;
             this.MethodName = methodName;
+            this.ParameterTypes = parameterTypes;
         }
 
         public object Invoke(RemoteFunctionParameters remoteParameters)

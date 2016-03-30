@@ -11,25 +11,26 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                             new RemoteFunctionAttribute(method.Method.Name);
-            return new RemoteFunction((p) => method(), methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(), methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, TResult>(Func<T1, TResult> method)
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                            new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, TResult>(Func<T1, T2, TResult> method)
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]), p.Param<T2>(paramNames[1])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]), p.Param<T2>(paramData.Item1[1])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
 
@@ -37,36 +38,36 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, TResult>(Func<T1, T2, T3, T4, TResult> method)
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, TResult>(Func<T1, T2, T3, T4, T5, TResult> method)
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, TResult>(
@@ -74,14 +75,14 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, TResult>(
@@ -89,15 +90,15 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, T8, TResult>(
@@ -105,16 +106,16 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult>(
@@ -122,17 +123,17 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TResult>(
@@ -140,18 +141,18 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8]),
-                p.Param<T10>(paramNames[9])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8]),
+                p.Param<T10>(paramData.Item1[9])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TResult>(
@@ -159,19 +160,19 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8]),
-                p.Param<T10>(paramNames[9]),
-                p.Param<T11>(paramNames[10])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8]),
+                p.Param<T10>(paramData.Item1[9]),
+                p.Param<T11>(paramData.Item1[10])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
 
@@ -180,20 +181,20 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8]),
-                p.Param<T10>(paramNames[9]),
-                p.Param<T11>(paramNames[10]),
-                p.Param<T12>(paramNames[11])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8]),
+                p.Param<T10>(paramData.Item1[9]),
+                p.Param<T11>(paramData.Item1[10]),
+                p.Param<T12>(paramData.Item1[11])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TResult>(
@@ -201,21 +202,21 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8]),
-                p.Param<T10>(paramNames[9]),
-                p.Param<T11>(paramNames[10]),
-                p.Param<T12>(paramNames[11]),
-                p.Param<T13>(paramNames[12])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8]),
+                p.Param<T10>(paramData.Item1[9]),
+                p.Param<T11>(paramData.Item1[10]),
+                p.Param<T12>(paramData.Item1[11]),
+                p.Param<T13>(paramData.Item1[12])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TResult>(
@@ -223,22 +224,22 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8]),
-                p.Param<T10>(paramNames[9]),
-                p.Param<T11>(paramNames[10]),
-                p.Param<T12>(paramNames[11]),
-                p.Param<T13>(paramNames[12]),
-                p.Param<T14>(paramNames[13])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8]),
+                p.Param<T10>(paramData.Item1[9]),
+                p.Param<T11>(paramData.Item1[10]),
+                p.Param<T12>(paramData.Item1[11]),
+                p.Param<T13>(paramData.Item1[12]),
+                p.Param<T14>(paramData.Item1[13])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TResult>
@@ -246,23 +247,23 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8]),
-                p.Param<T10>(paramNames[9]),
-                p.Param<T11>(paramNames[10]),
-                p.Param<T12>(paramNames[11]),
-                p.Param<T13>(paramNames[12]),
-                p.Param<T14>(paramNames[13]),
-                p.Param<T15>(paramNames[14])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8]),
+                p.Param<T10>(paramData.Item1[9]),
+                p.Param<T11>(paramData.Item1[10]),
+                p.Param<T12>(paramData.Item1[11]),
+                p.Param<T13>(paramData.Item1[12]),
+                p.Param<T14>(paramData.Item1[13]),
+                p.Param<T15>(paramData.Item1[14])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
 
@@ -272,24 +273,24 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8]),
-                p.Param<T10>(paramNames[9]),
-                p.Param<T11>(paramNames[10]),
-                p.Param<T12>(paramNames[11]),
-                p.Param<T13>(paramNames[12]),
-                p.Param<T14>(paramNames[13]),
-                p.Param<T15>(paramNames[14]),
-                p.Param<T16>(paramNames[15])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8]),
+                p.Param<T10>(paramData.Item1[9]),
+                p.Param<T11>(paramData.Item1[10]),
+                p.Param<T12>(paramData.Item1[11]),
+                p.Param<T13>(paramData.Item1[12]),
+                p.Param<T14>(paramData.Item1[13]),
+                p.Param<T15>(paramData.Item1[14]),
+                p.Param<T16>(paramData.Item1[15])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
         #endregion
 
@@ -298,25 +299,26 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                             new RemoteFunctionAttribute(method.Method.Name);
-            return new RemoteFunction((p) => method(), methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(), methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1>(Action<T1> method)
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                            new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2>(Action<T1, T2> method)
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]), p.Param<T2>(paramNames[1])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]), p.Param<T2>(paramData.Item1[1])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
 
@@ -324,36 +326,36 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4>(Action<T1, T2, T3, T4> method)
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5>(Action<T1, T2, T3, T4, T5> method)
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6>(
@@ -361,14 +363,14 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7>(
@@ -376,15 +378,15 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, T8>(
@@ -392,16 +394,16 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
@@ -409,17 +411,17 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
@@ -427,18 +429,18 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8]),
-                p.Param<T10>(paramNames[9])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8]),
+                p.Param<T10>(paramData.Item1[9])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
@@ -446,19 +448,19 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8]),
-                p.Param<T10>(paramNames[9]),
-                p.Param<T11>(paramNames[10])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8]),
+                p.Param<T10>(paramData.Item1[9]),
+                p.Param<T11>(paramData.Item1[10])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
 
@@ -467,20 +469,20 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8]),
-                p.Param<T10>(paramNames[9]),
-                p.Param<T11>(paramNames[10]),
-                p.Param<T12>(paramNames[11])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8]),
+                p.Param<T10>(paramData.Item1[9]),
+                p.Param<T11>(paramData.Item1[10]),
+                p.Param<T12>(paramData.Item1[11])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
@@ -488,21 +490,21 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8]),
-                p.Param<T10>(paramNames[9]),
-                p.Param<T11>(paramNames[10]),
-                p.Param<T12>(paramNames[11]),
-                p.Param<T13>(paramNames[12])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8]),
+                p.Param<T10>(paramData.Item1[9]),
+                p.Param<T11>(paramData.Item1[10]),
+                p.Param<T12>(paramData.Item1[11]),
+                p.Param<T13>(paramData.Item1[12])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
@@ -510,22 +512,22 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8]),
-                p.Param<T10>(paramNames[9]),
-                p.Param<T11>(paramNames[10]),
-                p.Param<T12>(paramNames[11]),
-                p.Param<T13>(paramNames[12]),
-                p.Param<T14>(paramNames[13])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8]),
+                p.Param<T10>(paramData.Item1[9]),
+                p.Param<T11>(paramData.Item1[10]),
+                p.Param<T12>(paramData.Item1[11]),
+                p.Param<T13>(paramData.Item1[12]),
+                p.Param<T14>(paramData.Item1[13])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
         public static RemoteFunction Make<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>
@@ -533,23 +535,23 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8]),
-                p.Param<T10>(paramNames[9]),
-                p.Param<T11>(paramNames[10]),
-                p.Param<T12>(paramNames[11]),
-                p.Param<T13>(paramNames[12]),
-                p.Param<T14>(paramNames[13]),
-                p.Param<T15>(paramNames[14])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8]),
+                p.Param<T10>(paramData.Item1[9]),
+                p.Param<T11>(paramData.Item1[10]),
+                p.Param<T12>(paramData.Item1[11]),
+                p.Param<T13>(paramData.Item1[12]),
+                p.Param<T14>(paramData.Item1[13]),
+                p.Param<T15>(paramData.Item1[14])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
 
 
@@ -559,24 +561,24 @@ namespace Michi.Functions
         {
             var methodData = method.Method.GetCustomAttribute<RemoteFunctionAttribute>() ??
                                      new RemoteFunctionAttribute(method.Method.Name);
-            var paramNames = method.Method.GetParameterNames();
-            return new RemoteFunction((p) => method(p.Param<T1>(paramNames[0]),
-                p.Param<T2>(paramNames[1]),
-                p.Param<T3>(paramNames[2]),
-                p.Param<T4>(paramNames[3]),
-                p.Param<T5>(paramNames[4]),
-                p.Param<T6>(paramNames[5]),
-                p.Param<T7>(paramNames[6]),
-                p.Param<T8>(paramNames[7]),
-                p.Param<T9>(paramNames[8]),
-                p.Param<T10>(paramNames[9]),
-                p.Param<T11>(paramNames[10]),
-                p.Param<T12>(paramNames[11]),
-                p.Param<T13>(paramNames[12]),
-                p.Param<T14>(paramNames[13]),
-                p.Param<T15>(paramNames[14]),
-                p.Param<T16>(paramNames[15])),
-                methodData.MethodName, methodData.MethodNamespace);
+            var paramData = method.Method.GetParameterData();
+            return new RemoteFunction((p) => method(p.Param<T1>(paramData.Item1[0]),
+                p.Param<T2>(paramData.Item1[1]),
+                p.Param<T3>(paramData.Item1[2]),
+                p.Param<T4>(paramData.Item1[3]),
+                p.Param<T5>(paramData.Item1[4]),
+                p.Param<T6>(paramData.Item1[5]),
+                p.Param<T7>(paramData.Item1[6]),
+                p.Param<T8>(paramData.Item1[7]),
+                p.Param<T9>(paramData.Item1[8]),
+                p.Param<T10>(paramData.Item1[9]),
+                p.Param<T11>(paramData.Item1[10]),
+                p.Param<T12>(paramData.Item1[11]),
+                p.Param<T13>(paramData.Item1[12]),
+                p.Param<T14>(paramData.Item1[13]),
+                p.Param<T15>(paramData.Item1[14]),
+                p.Param<T16>(paramData.Item1[15])),
+                methodData.MethodName, methodData.MethodNamespace, paramData.Item2);
         }
         #endregion
 

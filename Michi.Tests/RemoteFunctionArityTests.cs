@@ -74,6 +74,11 @@ namespace Michi.Tests
                 object, object, object, object, object, object, object, object, string>
             ((x, y, z, a, b, c, d, e, f, g, h, i, j, k, l) => "Hello World");
         [Fact]
+        public void Func16() =>
+           RemoteFunction.Make<object, object, object, object, object, object, object,
+               object, object, object, object, object, object, object, object, object, string>
+           ((x, y, z, a, b, c, d, e, f, g, h, i, j, k, l, m) => "Hello World");
+        [Fact]
         public void Action0() =>
             RemoteFunction.Make(() => { });
         [Fact]
@@ -137,5 +142,10 @@ namespace Michi.Tests
             RemoteFunction.Make<object, object, object, object, object, object, object,
                 object, object, object, object, object, object, object, object>
             ((x, y, z, a, b, c, d, e, f, g, h, i, j, k, l) => { });
+        [Fact]
+        public void Action16() =>
+           RemoteFunction.Make<object, object, object, object, object, object, object,
+               object, object, object, object, object, object, object, object, object>
+           ((x, y, z, a, b, c, d, e, f, g, h, i, j, k, l, m) => { });
     }
 }

@@ -14,7 +14,7 @@ namespace Michi.Functions
     /// </summary>
     public class RemoteFunctionParameters : IEnumerable<KeyValuePair<string, object>>
     {
-        private readonly IDictionary<string, dynamic> parameterDictionary;
+        private readonly IDictionary<string, object> parameterDictionary;
 
         public RemoteFunctionParameters()
         {

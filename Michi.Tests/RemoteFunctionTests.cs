@@ -24,10 +24,23 @@ namespace Michi.Tests
             Assert.Equal("Hello World", this.HelloWorld());
         }
 
+        [Fact]
+        public void GetParameterTypesTest()
+        {
+            var remoteFunction = RemoteFunction.Make<string, string>(this.Echo);
+            Assert.Equal(typeof(string), remoteFunction.ParameterTypes?.First().Value);
+        }
+
         [RemoteFunction("HelloWorld", "Test")]
         public string HelloWorld()
         {
             return "Hello World";
+        }
+
+        [RemoteFunction("Echo", "Test")]
+        public string Echo(string echo)
+        {
+            return echo;
         }
     }
 }
