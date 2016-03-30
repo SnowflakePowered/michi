@@ -83,7 +83,7 @@ You can do even do things like..
 
 ```c#
 [RemoteFunction("Error", "@")]
-public void Exit()
+public void Error()
 {
   throw new Exception("Error World!"); //throw a .NET Exception
 }
