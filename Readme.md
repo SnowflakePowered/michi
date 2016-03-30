@@ -112,7 +112,7 @@ let response = await michi.request(requestObj);
 
 \*_michi.js not (yet) included_
 
-But Michi is designed to be barebones and dependency-less, so none of these examples are possible until you implement a [`IRemoteHandler`](https://github.com/SnowflakePowered/michi/tree/master/Michi/Handlers) for these transports, see the wiki for more detais. 
+But Michi is designed to be barebones and dependency-less, so none of these examples are possible until you implement a [`IRemoteHandler`](https://github.com/SnowflakePowered/michi/tree/master/Michi/Handlers) for these transports, see the wiki for more details. 
 
 
 Michi was created for [Snowflake](http://snowflakepowe.red).
