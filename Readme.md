@@ -27,7 +27,7 @@ public string Echo(MyCustomObject myObject)
 }
 
 [RemoteFunction("Echo", "@")]
-public string EchoObject(string stringToEcho)
+public string Echo(string stringToEcho)
 {
   return stringToEcho + " from C#!";
 }
@@ -47,7 +47,39 @@ let response = await michi.request(requestObj);
 console.log(response.Result); // "Hello World from C#!"
 ```
 
-You can do other things too like..
+or like this
+
+```http
+curl -XPOST -d '{ "stringToEcho" : "There's a man they call The Skipper fast asleep" }' 'http://localhost:8080/michi/@/Echo'
+
+Connection: keep-alive
+Content-Encoding: gzip
+Content-Type: text/json
+Vary: Accept-Encoding
+X-Michi-Ver: 3.2.0
+
+"There's a man they call The Skipper fast asleep from C#!"
+```
+You can do more things too like..
+
+```c#
+[RemoteFunction("ObjectsAreCool", "@")]
+public object EchoObject(string stringToEcho)
+{
+  return { WhenYou = "Are too lazy to create a real class" };
+}
+```
+
+and use that like this..
+
+```es6
+let requestObj = michi.create("ObjectsAreCool", "@");
+let response = await michi.request(requestObj);
+console.log(response.Result.WhenYou); // "Are too lazy to create a real class"
+```
+
+
+You can do even do things like..
 
 ```c#
 [RemoteFunction("Error", "@")]
@@ -80,6 +112,8 @@ let response = await michi.request(requestObj);
 
 \*_michi.js not (yet) included_
 
+But Michi is designed to be barebones and dependency-less, so none of these examples are possible until you implement a [`IRemoteHandler`](https://github.com/SnowflakePowered/michi/tree/master/Michi/Handlers) for these transports, see the wiki for more detais. 
 
-Michi was created for [Snowflake](http://snowflakepowe.red)
+
+Michi was created for [Snowflake](http://snowflakepowe.red).
 
