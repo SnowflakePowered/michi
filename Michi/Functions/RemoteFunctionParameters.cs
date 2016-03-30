@@ -21,12 +21,14 @@ namespace Michi.Functions
             this.parameterDictionary = new ConcurrentDictionary<string, object>();
         }
 
-        internal object Param(string key)
-        {
-            return this.parameterDictionary.ContainsKey(key) ? this.parameterDictionary[key] : null;
-        }
+         internal T Param<T>(string key)
+         {
+            if (!this.parameterDictionary.ContainsKey(key)) return default(T);
+            object value = this.parameterDictionary[key];
+            return (value is T) ? (T)value : default(T);
+         }
 
-        public void Add(string key, dynamic value)
+        public void Add(string key, object value)
         {
             this.parameterDictionary.Add(key, value);
         }

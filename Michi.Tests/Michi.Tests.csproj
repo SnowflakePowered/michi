@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumeratorTests.cs" />
+    <Compile Include="RemoteFunctionArityTests.cs" />
     <Compile Include="RemoteHandlerTests.cs" />
     <Compile Include="RemoteFunctionContainerTests.cs" />
     <Compile Include="RemoteFunctionTests.cs" />
