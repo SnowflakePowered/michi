@@ -6,8 +6,49 @@
 [![AppVeyor branch](https://img.shields.io/appveyor/ci/RonnChyran/michi.svg)](https://ci.appveyor.com/project/RonnChyran/michi)
 
 
-Michi is a lightweight framework on implementing inter-process function calls from .NET.
+Michi is a lightweight, barebones framework on implementing inter-process function calls from .NET.
 Michi does not specify a wire format, handling of consumers must be implemented manually.
+
+With Michi, you can call this:
+
+```c#
+
+public class MyCustomObject 
+{
+  public string StringToEcho { get; }
+}
+
+// some class declaration ...
+
+[RemoteFunction("EchoObject", "@")]
+public string Echo(MyCustomObject myObject)
+{
+  return myObject.StringToEcho;
+}
+
+[RemoteFunction("Echo", "@")]
+public string EchoObject(string stringToEcho)
+{
+  return stringToEcho + " from C#!";
+}
+```
+
+like this*: 
+
+```es6
+let requestObj = michi.create("EchoObject", "@", { "myObject" : { "StringToEcho" : "Hello World" } });
+let response = await michi.request(requestObj);
+console.log(response.Result); // "Hello World"
+
+// ...
+
+let requestObj = michi.create("Echo", "@", { "stringtoEcho" : "Hello World" } );
+let response = await michi.request(requestObj);
+console.log(response.Result); // "Hello World from C#!"
+```
+
+\*_michi.js not (yet) included_
+
 
 Michi was created for [Snowflake](http://snowflakepowe.red)
 
