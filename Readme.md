@@ -31,18 +31,6 @@ public string EchoObject(string stringToEcho)
 {
   return stringToEcho + " from C#!";
 }
-
-[RemoteFunction("Error", "@")]
-public void Exit()
-{
-  throw new Exception("Error World!"); //throw a .NET Exception
-}
-
-[RemoteFunction("IGotYouFam", "BadIdeas")]
-public void Exit()
-{
-  Environment.Exit(0); //Close everything unexpectedly
-}
 ```
 
 like this*: 
@@ -57,9 +45,27 @@ console.log(response.Result); // "Hello World"
 let requestObj = michi.create("Echo", "@", { "stringtoEcho" : "Hello World" } );
 let response = await michi.request(requestObj);
 console.log(response.Result); // "Hello World from C#!"
+```
 
-// ...
+You can do other things too like..
 
+```c#
+[RemoteFunction("Error", "@")]
+public void Exit()
+{
+  throw new Exception("Error World!"); //throw a .NET Exception
+}
+
+[RemoteFunction("IGotYouFam", "BadIdeas")]
+public void Exit()
+{
+  Environment.Exit(0); //Close everything unexpectedly
+}
+```
+
+and call them like this:
+
+```es6
 let requestObj = michi.create("Error", "@");
 let response = await michi.request(requestObj);
 console.log(response.IsSuccess); // false
