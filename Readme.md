@@ -114,6 +114,16 @@ let response = await michi.request(requestObj);
 
 But Michi is designed to be barebones and dependency-less, so none of these examples are possible until you implement a [`IRemoteHandler`](https://github.com/SnowflakePowered/michi/tree/master/Michi/Handlers) for these transports, see the wiki for more details. 
 
+Why not JSON-RPC/XML-RPC/SOAP/(some other way of doing RPC)
+-----------------------------------------------------------
+
+Other RPC libraries specify a format that you have to follow and have a lot of cruft involved to make sure the spec is followed.
+
+Michi doesn't come with a spec. You can use whatever serialization format or transport you want, just handle it in an [`IRemoteHandler`](https://github.com/SnowflakePowered/michi/tree/master/Michi/Handlers). You could pipe the `RemoteRequest`/`RemoteResponse` objects through a pipe as binary objects, use [Protobufs](https://developers.google.com/protocol-buffers/docs/csharptutorial), or serialize it in a binary format and send it using [carrier pigeons](https://www.ietf.org/rfc/rfc1149.txt).
+
+Michi isn't concerned with the way it sends and receives data, only that the data is there for a function when it runs.
+
+
 
 Michi was created for [Snowflake](http://snowflakepowe.red).
 
