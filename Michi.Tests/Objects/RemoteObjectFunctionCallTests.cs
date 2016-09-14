@@ -42,7 +42,7 @@ namespace Michi.Tests.Objects
 
             var functionCallRes = new RemoteFunctionCallResolver(container, rescontainer);
             var resolvedRequest = functionCallRes.ResolveRequest(multiplyCall);
-            Assert.Equal(8, container.Invoke(resolvedRequest).Result);
+            Assert.Equal(8, resolvedRequest.Result);
         }
 
         [RemoteFunction("multiply")]

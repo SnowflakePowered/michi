@@ -18,7 +18,7 @@ namespace Michi.Objects
             this.resolver = resolver;
         }
 
-        public RemoteRequest ResolveRequest(RemoteFunctionCall functionCall)
+        public RemoteResponse ResolveRequest(RemoteFunctionCall functionCall)
         {
             var remoteParameters = new RemoteFunctionParameters();
             foreach (KeyValuePair<string, object> o in functionCall.Parameters)
@@ -29,12 +29,13 @@ namespace Michi.Objects
                 }
                 else
                 {
-                    var localCallResult = container.Invoke(this.ResolveRequest(o.Value as RemoteFunctionCall));
+                    var localCallResult = this.ResolveRequest(o.Value as RemoteFunctionCall);
                     //todo error handling
                     remoteParameters.Add(o.Key, localCallResult.Result);
                 }
             }
-            return new RemoteRequest(functionCall.FunctionName, functionCall.NamespaceName, remoteParameters);
+            var builtRequest = new RemoteRequest(functionCall.FunctionName, functionCall.NamespaceName, remoteParameters);
+            return container.Invoke(builtRequest);
         }
     }
 }
