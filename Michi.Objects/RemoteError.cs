@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Michi.Objects
 {
-    public class RemoteError : RemoteObject
+    public class RemoteError 
     {
         public string Message { get; set; }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Michi.Objects
 {
-    public abstract class RemoteObjectResolver<TLocal, TRemote> where TRemote : RemoteObject
+    public abstract class RemoteObjectResolver<TLocal, TRemote> 
     {
         public abstract TLocal ToObject(TRemote o);
         public abstract TRemote ToRemote(TLocal o);

@@ -21,7 +21,7 @@ namespace Michi.Objects
         public RemoteRequest ResolveRequest(RemoteFunctionCall functionCall)
         {
             var remoteParameters = new RemoteFunctionParameters();
-            foreach (KeyValuePair<string, RemoteObject> o in functionCall.Parameters)
+            foreach (KeyValuePair<string, object> o in functionCall.Parameters)
             {
                 if (!(o.Value is RemoteFunctionCall))
                 {

@@ -23,7 +23,7 @@ namespace Michi.Tests.Objects
             {
                 FunctionName = "two",
                 NamespaceName = "@",
-                Parameters = new Dictionary<string, RemoteObject>(),
+                Parameters = new Dictionary<string, object>(),
             };
 
             var multiplyCall = new RemoteFunctionCall()
@@ -31,15 +31,14 @@ namespace Michi.Tests.Objects
                 FunctionName = "multiply",
                 NamespaceName = "@",
                 Parameters =
-                new Dictionary<string, RemoteObject>{
+                new Dictionary<string, object>{
                     {"a", twoCall},
-                    {"b", new RemoteInteger() {Value = 4} },
+                    {"b", 4 },
                 }
             };
 
             var rescontainer = new RemoteObjectResolverContainer();
             rescontainer.AddResolver(new TestObjectResolver());
-            rescontainer.AddResolver(new IntegerResolver());
 
             var functionCallRes = new RemoteFunctionCallResolver(container, rescontainer);
             var resolvedRequest = functionCallRes.ResolveRequest(multiplyCall);

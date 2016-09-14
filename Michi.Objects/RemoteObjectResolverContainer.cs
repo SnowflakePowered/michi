@@ -11,21 +11,21 @@ namespace Michi.Objects
 {
     public class RemoteObjectResolverContainer
     {
-        private readonly IDictionary<Type, Func<object, RemoteObject>> remoteResolvers;
-        private readonly IDictionary<Type, Func<RemoteObject, object>> localResolvers;
+        private readonly IDictionary<Type, Func<object, object>> remoteResolvers;
+        private readonly IDictionary<Type, Func<object, object>> localResolvers;
 
         public RemoteObjectResolverContainer()
         {
-            this.remoteResolvers = new ConcurrentDictionary<Type, Func<object, RemoteObject>>();
-            this.localResolvers = new ConcurrentDictionary<Type, Func<RemoteObject, object>>();
+            this.remoteResolvers = new ConcurrentDictionary<Type, Func<object, object>>();
+            this.localResolvers = new ConcurrentDictionary<Type, Func<object, object>>();
         }
 
-        public void AddResolver<TLocal, TRemote>(RemoteObjectResolver<TLocal, TRemote> resolver) where TRemote : RemoteObject
+        public void AddResolver<TLocal, TRemote>(RemoteObjectResolver<TLocal, TRemote> resolver)
         {
             this.AddResolver(o => resolver.ToRemote(o), o => resolver.ToObject((TRemote)o));    
         }
 
-        public void AddResolver<T>(Expression<Func<T, RemoteObject>> toRemote, Expression<Func<RemoteObject, T>> toLocal)
+        public void AddResolver<T>(Expression<Func<T, object>> toRemote, Expression<Func<object, T>> toLocal)
         {
             var compiledToLocal = toLocal.Compile();
             var compiledToRemote = toRemote.Compile();
@@ -33,16 +33,19 @@ namespace Michi.Objects
             this.remoteResolvers.Add(typeof(T), x => compiledToRemote((T)x)); //maybe we can rewrite.
         }
 
-        public object ToObject(RemoteObject remoteObject)
+        public object ToObject(object remoteObject)
         {
-            Type t = remoteObject.GetType().GetCustomAttribute<RemoteObjectAttribute>().LocalType;
-            return localResolvers.ContainsKey(t) ? localResolvers[t](remoteObject) : remoteObject;
+            Type t = remoteObject.GetType().GetCustomAttribute<RemoteObjectAttribute>()?.LocalType;
+            return t != null && localResolvers.ContainsKey(t) ? localResolvers[t](remoteObject) 
+                : remoteObject;
         }
 
-        public RemoteObject ToRemote(object localObject)
+        public object ToRemote(object localObject)
         {
             Type t = localObject.GetType();
-            return this.remoteResolvers.ContainsKey(t) ? this.remoteResolvers[t](localObject) : null; //todo return something meaningful
+            return this.remoteResolvers.ContainsKey(t)
+                ? this.remoteResolvers[t](localObject)
+                : localObject;
         }
     }
 }

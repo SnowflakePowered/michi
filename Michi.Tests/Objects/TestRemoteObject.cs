@@ -8,7 +8,7 @@ using Michi.Objects;
 namespace Michi.Tests.Objects
 {
     [RemoteObject(typeof(TestComplexObject))]
-    public class TestRemoteObject : RemoteObject
+    public class TestRemoteObject
     {
         public string TestString { get; set; }
     }

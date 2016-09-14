@@ -32,10 +32,4 @@ namespace Michi.Tests.Objects
         };
 
     }
-
-    public class IntegerResolver : RemoteObjectResolver<int, RemoteInteger>
-    {
-        public override int ToObject(RemoteInteger o) => o.Value;
-        public override RemoteInteger ToRemote(int o) => new RemoteInteger() {Value = o};
-    }
 }
