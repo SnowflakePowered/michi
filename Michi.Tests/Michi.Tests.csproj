@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumeratorTests.cs" />
+    <Compile Include="Objects\RemoteObjectFunctionCallTests.cs" />
     <Compile Include="Objects\RemoteObjectResolverTests.cs" />
     <Compile Include="Objects\TestComplexObject.cs" />
     <Compile Include="Objects\TestRemoteObject.cs" />

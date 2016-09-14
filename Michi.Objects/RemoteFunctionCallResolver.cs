@@ -30,7 +30,8 @@ namespace Michi.Objects
                 else
                 {
                     var localCallResult = container.Invoke(this.ResolveRequest(o.Value as RemoteFunctionCall));
-                    remoteParameters.Add(o.Key, localCallResult);
+                    //todo error handling
+                    remoteParameters.Add(o.Key, localCallResult.Result);
                 }
             }
             return new RemoteRequest(functionCall.FunctionName, functionCall.NamespaceName, remoteParameters);

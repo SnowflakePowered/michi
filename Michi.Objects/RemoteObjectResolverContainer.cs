@@ -22,7 +22,7 @@ namespace Michi.Objects
 
         public void AddResolver<TLocal, TRemote>(RemoteObjectResolver<TLocal, TRemote> resolver) where TRemote : RemoteObject
         {
-            this.AddResolver(o => resolver.ToRemote(o), o => resolver.ToObject(o));    
+            this.AddResolver(o => resolver.ToRemote(o), o => resolver.ToObject((TRemote)o));    
         }
 
         public void AddResolver<T>(Expression<Func<T, RemoteObject>> toRemote, Expression<Func<RemoteObject, T>> toLocal)

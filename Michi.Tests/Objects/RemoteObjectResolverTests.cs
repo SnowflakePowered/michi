@@ -24,12 +24,18 @@ namespace Michi.Tests.Objects
 
     public class TestObjectResolver: RemoteObjectResolver<TestComplexObject, TestRemoteObject>
     {
-        public override TestComplexObject ToObject(RemoteObject o) => new TestComplexObject();
+        public override TestComplexObject ToObject(TestRemoteObject o) => new TestComplexObject();
 
         public override TestRemoteObject ToRemote(TestComplexObject o) => new TestRemoteObject()
         {
             TestString = o.TestComplexProperty + " From Remote!!"
         };
 
+    }
+
+    public class IntegerResolver : RemoteObjectResolver<int, RemoteInteger>
+    {
+        public override int ToObject(RemoteInteger o) => o.Value;
+        public override RemoteInteger ToRemote(int o) => new RemoteInteger() {Value = o};
     }
 }

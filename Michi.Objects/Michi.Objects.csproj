@@ -44,6 +44,7 @@
     <Compile Include="RemoteFunctionCall.cs" />
     <Compile Include="InvalidRemoteObjectException.cs" />
     <Compile Include="RemoteFunctionCallResolver.cs" />
+    <Compile Include="RemoteInteger.cs" />
     <Compile Include="RemoteObject.cs" />
     <Compile Include="RemoteObjectAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
